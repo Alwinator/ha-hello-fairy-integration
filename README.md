@@ -1,5 +1,10 @@
 # ha-hello-fairy-integration
 
+## Installation
+```bash
+pip install -r requirements.txt
+```
+
 Device Address: BE01C2F5-E31D-88CE-C2CA-1CE2736B9832
 
 ## Reverse Engeneered Commands
