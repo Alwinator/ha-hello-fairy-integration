@@ -27,6 +27,7 @@ aa030701001403e8038cbb Set color to orange
 
 aa0307010000000001b0bb Set color to white with lower brightness
 
+aa030701 00a403a503e8 bb
 
 
 aa030903116403e8016803e8bb Enable music mode "Energy"
