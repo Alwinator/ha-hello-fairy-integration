@@ -4,15 +4,10 @@ from __future__ import annotations
 import logging
 from typing import Any
 
-import awesomelights
-import voluptuous as vol
-
-# Import the device class from the component that you want to support
-import homeassistant.helpers.config_validation as cv
 from bleak import BleakScanner, BleakClient, BLEDevice
-from homeassistant.components.light import (ATTR_BRIGHTNESS, PLATFORM_SCHEMA,
-                                            LightEntity)
-from homeassistant.const import CONF_ADDRESS
+from homeassistant.components.light import (PLATFORM_SCHEMA, LightEntity)
+from homeassistant.config_entries import ConfigEntry
+
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
 from homeassistant.helpers.typing import ConfigType, DiscoveryInfoType
@@ -32,11 +27,10 @@ COMMANDS = {
 }
 
 
-async def setup_platform(
+async def async_setup_entry(
         hass: HomeAssistant,
-        config: ConfigType,
-        add_entities: AddEntitiesCallback,
-        discovery_info: DiscoveryInfoType | None = None
+        config_entry: ConfigEntry,
+        async_add_entities: AddEntitiesCallback,
 ) -> None:
     devices = await BleakScanner.discover(cb=dict(use_bdaddr=True))
     fairy_devices = []
@@ -45,11 +39,12 @@ async def setup_platform(
         if d.name and "Hello Fairy" in d.name:
             fairy_devices.append(FairyLight(d))
 
-    add_entities(fairy_devices)
+    async_add_entities(fairy_devices)
 
 
 class FairyLight(LightEntity):
     """Representation of a Fairy Light."""
+
 
     def __init__(self, bluetooth_device: BLEDevice) -> None:
         """Initialize an FairyLight."""

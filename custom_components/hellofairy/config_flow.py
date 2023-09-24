@@ -1,4 +1,6 @@
 """Config flow for hello-fairy."""
+import logging
+
 from homeassistant.components.bluetooth import (
     BluetoothServiceInfo,
     async_discovered_service_info,
@@ -11,7 +13,7 @@ from .const import DOMAIN
 
 def _is_supported(discovery_info: BluetoothServiceInfo) -> bool:
     """Check if device is supported."""
-    print(discovery_info)
+    logging.info(discovery_info)
 
     # discovery_info.manufacturer_data
     return True
@@ -19,12 +21,12 @@ def _is_supported(discovery_info: BluetoothServiceInfo) -> bool:
 
 def get_devices(hass: HomeAssistant):
     service_info = async_discovered_service_info(hass)
-    print(service_info)
+    logging.info(service_info)
     for discovery_info in service_info:
         if not _is_supported(discovery_info):
             continue
 
-    return []
+    return [None]
 
 
 async def _async_has_devices(hass: HomeAssistant) -> bool:
