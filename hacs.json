@@ -2,5 +2,6 @@
   "name": "Hello Fairy Integration",
   "hacs": "1.0.0",
   "homeassistant": "2022.6",
-  "domains": ["light"]
+  "domains": ["light"],
+  "render_readme": true
 }
