@@ -17,7 +17,7 @@ def _is_supported(discovery_info: BluetoothServiceInfo) -> bool:
     return True
 
 
-async def get_devices(hass: HomeAssistant):
+def get_devices(hass: HomeAssistant):
     service_info = async_discovered_service_info(hass)
     print(service_info)
     for discovery_info in service_info:

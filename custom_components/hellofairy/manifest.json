@@ -10,7 +10,7 @@
   "issue_tracker": "https://github.com/Alwinator/ha-hello-fairy-integration/issues",
   "homekit": {},
   "iot_class": "assumed_state",
-  "requirements": ["bluetooth_adapters==0.16.0"],
+  "requirements": ["bluetooth_adapters"],
   "ssdp": [],
   "zeroconf": []
 }
