@@ -1,0 +1,13 @@
+{
+  "domain": "hellofairy",
+  "name": "hello-fairy",
+  "codeowners": ["@Alwinator"],
+  "config_flow": true,
+  "dependencies": [],
+  "documentation": "https://www.home-assistant.io/integrations/hellofairy",
+  "homekit": {},
+  "iot_class": "assumed_state",
+  "requirements": ["bluetooth_adapters==0.16.0"],
+  "ssdp": [],
+  "zeroconf": []
+}
