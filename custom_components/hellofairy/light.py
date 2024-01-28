@@ -188,7 +188,6 @@ class HelloFairyBT(LightEntity):
     async def async_turn_on(self, **kwargs: int) -> None:
         """Turn the light on."""
         _LOGGER.debug(f"Trying to turn on. with ATTR:{kwargs}")
-        self._is_on = True
 
         # First if brightness of dev to 0: turn off
         if ATTR_BRIGHTNESS in kwargs:
@@ -204,11 +203,6 @@ class HelloFairyBT(LightEntity):
         # ATTR cannot be set while light is off, so turn it on first
         if not self._is_on:
             await self._dev.turn_on()
-            if any(
-                keyword in kwargs
-                for keyword in (ATTR_HS_COLOR, ATTR_BRIGHTNESS)
-            ):
-                await asyncio.sleep(0.5)  # wait for the lamp to turn on
         self._is_on = True
 
         if ATTR_HS_COLOR in kwargs:
@@ -228,11 +222,10 @@ class HelloFairyBT(LightEntity):
             await self._dev.set_brightness(brightness_dev)
             # assuming new state before lamp update comes through:
             self._brightness = int(round(float(brightness_dev) * 2.55))
-            await asyncio.sleep(0.7)  # give time to transition before HA request update
             return
 
-        # if ATTR_EFFECT in kwargs:
-        #    self._effect = kwargs[ATTR_EFFECT]
+        if ATTR_EFFECT in kwargs:
+            self._effect = kwargs[ATTR_EFFECT]
 
     async def async_turn_off(self, **kwargs: int) -> None:
         """Turn the light off."""
