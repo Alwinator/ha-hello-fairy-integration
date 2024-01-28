@@ -1,0 +1,14 @@
+.venv
+.idea
+.trash
+blueprints
+custom_components/hacs
+esphome
+glances
+tts
+*.yaml
+*.log*
+*.db*
+.storage
+*.pyc
+.HA_VERSION
